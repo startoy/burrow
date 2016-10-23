@@ -16,3 +16,6 @@ import:
 - package: gopkg.in/tylerb/graceful.v1
 - package: golang.org/x/net/http2
 - package: github.com/eris-ltd/common
+# for eris-keys
+- package: github.com/wayn3h0/go-uuid
+- package: github.com/howeyc/gopass
