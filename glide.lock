@@ -28,8 +28,6 @@ imports:
   subpackages:
   - go/docs
   - go/common
-- name: github.com/eris-ltd/eris-keys
-  version: 114ebc77443db9a153692233294e48bc7e184215
 - name: github.com/eris-ltd/eris-logger
   version: ea48a395d6ecc0eccc67a26da9fc7a6106fabb84
 - name: github.com/fsnotify/fsnotify
