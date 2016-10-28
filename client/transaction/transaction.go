@@ -25,7 +25,7 @@ import (
 	"github.com/eris-ltd/eris-db/client"
 	"github.com/eris-ltd/eris-db/client/core"
 	"github.com/eris-ltd/eris-db/definitions"
-	"github.com/eris-ltd/eris-db/keys"
+	keys "github.com/eris-ltd/eris-db/keys/client"
 )
 
 func Send(do *definitions.ClientDo) {

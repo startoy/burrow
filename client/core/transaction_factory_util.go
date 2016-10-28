@@ -27,7 +27,7 @@ import (
 
 	acc "github.com/eris-ltd/eris-db/account"
 	"github.com/eris-ltd/eris-db/client"
-	"github.com/eris-ltd/eris-db/keys"
+	keys "github.com/eris-ltd/eris-db/keys/client"
 	ptypes "github.com/eris-ltd/eris-db/permission/types"
 	"github.com/eris-ltd/eris-db/txs"
 )

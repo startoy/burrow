@@ -23,7 +23,7 @@ import (
 	// "github.com/stretchr/testify/assert"
 
 	mockclient "github.com/eris-ltd/eris-db/client/mock"
-	mockkeys "github.com/eris-ltd/eris-db/keys/mock"
+	mockkeys "github.com/eris-ltd/eris-db/keys/client/mock"
 )
 
 func TestTransactionFactory(t *testing.T) {

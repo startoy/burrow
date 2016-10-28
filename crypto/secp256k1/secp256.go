@@ -22,7 +22,7 @@ import (
 	"errors"
 	"unsafe"
 
-	"github.com/eris-ltd/eris-db/keys/crypto/randentropy"
+	"github.com/eris-ltd/eris-db/crypto/randentropy"
 )
 
 //#define USE_FIELD_5X64

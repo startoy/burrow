@@ -17,7 +17,7 @@
 // version provides the current Eris-DB version and a VersionIdentifier
 // for the modules to identify their version with.
 
-package keys
+package client
 
 import (
 	"bytes"
