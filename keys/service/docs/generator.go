@@ -7,8 +7,8 @@ import (
 	"text/template"
 
 	"github.com/eris-ltd/common/go/docs"
-	commands "github.com/eris-ltd/eris-keys/eris-keys"
-	"github.com/eris-ltd/eris-keys/version"
+	commands "github.com/eris-ltd/eris-db/keys/service/eris-keys"
+	"github.com/eris-ltd/eris-db/version"
 
 	"github.com/spf13/cobra"
 )

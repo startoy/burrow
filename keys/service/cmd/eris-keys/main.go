@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/eris-ltd/eris-keys/eris-keys"
+	"github.com/eris-ltd/eris-db/keys/eris-keys"
 )
 
 func main() {
