@@ -7,8 +7,8 @@ import (
 	"testing"
 
 	"github.com/eris-ltd/common/go/common"
-	ed25519 "github.com/eris-ltd/eris-keys/crypto/helpers"
-	"github.com/eris-ltd/eris-keys/crypto"
+	ed25519 "github.com/eris-ltd/eris-db/crypto/helpers"
+	"github.com/eris-ltd/eris-db/crypto"
 )
 
 var (

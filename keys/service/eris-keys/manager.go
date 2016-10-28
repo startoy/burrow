@@ -24,7 +24,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/eris-ltd/eris-keys/crypto"
+	"github.com/eris-ltd/eris-db/crypto"
 	log "github.com/eris-ltd/eris-logger"
 )
 
