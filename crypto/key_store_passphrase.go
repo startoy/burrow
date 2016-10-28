@@ -86,7 +86,7 @@ import (
 
 	uuid "github.com/wayn3h0/go-uuid"
 	"golang.org/x/crypto/scrypt" // 2^18 / 8 / 1 uses 256MB memory and approx 1s CPU time on a modern CPU.
-	"github.com/eris-ltd/eris-keys/crypto/randentropy"
+	"github.com/eris-ltd/eris-db/crypto/randentropy"
 )
 
 const (
