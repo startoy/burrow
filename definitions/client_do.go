@@ -44,6 +44,13 @@ type ClientDo struct {
 	GasFlag      string
 	UnbondtoFlag string
 	HeightFlag   string
+
+	// Following parameters support the batch command
+	ContractAddressFlag string
+	AbiPathFlag         string
+	JsonDataPathFlag    string
+	MethodFlag          string
+	BatchSizeFlag       string
 }
 
 func NewClientDo() *ClientDo {

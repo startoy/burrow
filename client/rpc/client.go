@@ -31,7 +31,7 @@ import (
 // validates strings and forms transaction
 
 func Send(nodeClient client.NodeClient, keyClient keys.KeyClient, pubkey, addr, toAddr, amtS, nonceS string) (*txs.SendTx, error) {
-	pub, amt, nonce, err := checkCommon(nodeClient, keyClient, pubkey, addr, amtS, nonceS)
+	pub, amt, nonce, err := CheckCommon(nodeClient, keyClient, pubkey, addr, amtS, nonceS)
 	if err != nil {
 		return nil, err
 	}
@@ -53,7 +53,7 @@ func Send(nodeClient client.NodeClient, keyClient keys.KeyClient, pubkey, addr, 
 }
 
 func Call(nodeClient client.NodeClient, keyClient keys.KeyClient, pubkey, addr, toAddr, amtS, nonceS, gasS, feeS, data string) (*txs.CallTx, error) {
-	pub, amt, nonce, err := checkCommon(nodeClient, keyClient, pubkey, addr, amtS, nonceS)
+	pub, amt, nonce, err := CheckCommon(nodeClient, keyClient, pubkey, addr, amtS, nonceS)
 	if err != nil {
 		return nil, err
 	}
@@ -83,7 +83,7 @@ func Call(nodeClient client.NodeClient, keyClient keys.KeyClient, pubkey, addr, 
 }
 
 func Name(nodeClient client.NodeClient, keyClient keys.KeyClient, pubkey, addr, amtS, nonceS, feeS, name, data string) (*txs.NameTx, error) {
-	pub, amt, nonce, err := checkCommon(nodeClient, keyClient, pubkey, addr, amtS, nonceS)
+	pub, amt, nonce, err := CheckCommon(nodeClient, keyClient, pubkey, addr, amtS, nonceS)
 	if err != nil {
 		return nil, err
 	}
@@ -98,7 +98,7 @@ func Name(nodeClient client.NodeClient, keyClient keys.KeyClient, pubkey, addr, 
 }
 
 func Permissions(nodeClient client.NodeClient, keyClient keys.KeyClient, pubkey, addrS, nonceS, permFunc string, argsS []string) (*txs.PermissionsTx, error) {
-	pub, _, nonce, err := checkCommon(nodeClient, keyClient, pubkey, addrS, "0", nonceS)
+	pub, _, nonce, err := CheckCommon(nodeClient, keyClient, pubkey, addrS, "0", nonceS)
 	if err != nil {
 		return nil, err
 	}
@@ -163,7 +163,7 @@ func Permissions(nodeClient client.NodeClient, keyClient keys.KeyClient, pubkey,
 
 func Bond(nodeClient client.NodeClient, keyClient keys.KeyClient, pubkey, unbondAddr, amtS, nonceS string) (*txs.BondTx, error) {
 	return nil, fmt.Errorf("Bond Transaction formation to be implemented on 0.12.0")
-	// pub, amt, nonce, err := checkCommon(nodeAddr, signAddr, pubkey, "", amtS, nonceS)
+	// pub, amt, nonce, err := CheckCommon(nodeAddr, signAddr, pubkey, "", amtS, nonceS)
 	// if err != nil {
 	// 	return nil, err
 	// }

@@ -15,21 +15,19 @@
 package commands
 
 import (
-	"github.com/spf13/cobra"
-
 	"github.com/hyperledger/burrow/client/methods"
 	"github.com/hyperledger/burrow/util"
+
+	"github.com/spf13/cobra"
 )
 
 func buildStatusCommand() *cobra.Command {
 	statusCmd := &cobra.Command{
 		Use:   "status",
 		Short: "burrow-client status returns the current status from a chain.",
-		Long: `burrow-client status returns the current status from a chain.
-`,
+		Long:  "burrow-client status returns the current status from a chain.",
 		Run: func(cmd *cobra.Command, args []string) {
-			err := methods.Status(clientDo)
-			if err != nil {
+			if err := methods.Status(clientDo); err != nil {
 				util.Fatalf("Could not get status: %s", err)
 			}
 		},

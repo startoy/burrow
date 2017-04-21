@@ -29,26 +29,22 @@ var (
 	ValidatorsPathFlag string
 )
 
-var GenesisGenCmd = &cobra.Command{
-	Use:   "make-genesis",
-	Short: "burrow-client make-genesis creates a genesis.json with known inputs",
-	Long:  "burrow-client make-genesis creates a genesis.json with known inputs",
+func buildGenesisGenCommand() *cobra.Command {
+	genesisGenCmd := &cobra.Command{
+		Use:   "make-genesis",
+		Short: "burrow-client make-genesis creates a genesis.json with known inputs",
+		Long:  "burrow-client make-genesis creates a genesis.json with known inputs",
 
-	Run: func(cmd *cobra.Command, args []string) {
-		// TODO refactor to not panic
-		genesisFile, err := genesis.GenerateKnown(args[0], AccountsPathFlag, ValidatorsPathFlag)
-		if err != nil {
-			sanity.PanicSanity(err)
-		}
-		fmt.Println(genesisFile) // may want to save somewhere instead
-	},
-}
-
-func buildGenesisGenCommand() {
-	addGenesisPersistentFlags()
-}
-
-func addGenesisPersistentFlags() {
-	GenesisGenCmd.Flags().StringVarP(&AccountsPathFlag, "accounts", "", "", "path to accounts.csv with the following params: (pubkey, starting balance, name, permissions, setbit")
-	GenesisGenCmd.Flags().StringVarP(&ValidatorsPathFlag, "validators", "", "", "path to validators.csv with the following params: (pubkey, starting balance, name, permissions, setbit")
+		Run: func(cmd *cobra.Command, args []string) {
+			// TODO refactor to not panic
+			genesisFile, err := genesis.GenerateKnown(args[0], AccountsPathFlag, ValidatorsPathFlag)
+			if err != nil {
+				sanity.PanicSanity(err)
+			}
+			fmt.Println(genesisFile) // may want to save somewhere instead
+		},
+	}
+	genesisGenCmd.Flags().StringVarP(&AccountsPathFlag, "accounts", "", "", "path to accounts.csv with the following params: (pubkey, starting balance, name, permissions, setbit")
+	genesisGenCmd.Flags().StringVarP(&ValidatorsPathFlag, "validators", "", "", "path to validators.csv with the following params: (pubkey, starting balance, name, permissions, setbit")
+	return genesisGenCmd
 }

@@ -86,7 +86,7 @@ func decodeAddressPermFlag(addrS, permFlagS string) (addr []byte, pFlag ptypes.P
 	return
 }
 
-func checkCommon(nodeClient client.NodeClient, keyClient keys.KeyClient, pubkey, addr, amtS, nonceS string) (pub crypto.PubKey, amt int64, nonce int64, err error) {
+func CheckCommon(nodeClient client.NodeClient, keyClient keys.KeyClient, pubkey, addr, amtS, nonceS string) (pub crypto.PubKey, amt int64, nonce int64, err error) {
 	if amtS == "" {
 		err = fmt.Errorf("input must specify an amount with the --amt flag")
 		return

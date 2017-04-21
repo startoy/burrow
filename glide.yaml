@@ -33,3 +33,8 @@ import:
 - package: github.com/Masterminds/glide
   version: ~0.12.3
 - package: github.com/Graylog2/go-gelf
+- package: github.com/ethereum/go-ethereum
+  version: ~1.6.0
+  subpackages:
+  - accounts
+  - common

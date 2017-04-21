@@ -1,0 +1,7 @@
+jobs:
+
+- name: queryStore
+  job:
+    query-contract:
+      destination: $STORE
+      function: getCount

@@ -1,0 +1,9 @@
+jobs:
+
+- name: deployStore
+  job:
+    deploy:
+      contract: store.sol
+      instance: Store
+      amount: 10000
+      wait: true

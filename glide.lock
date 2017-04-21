@@ -29,6 +29,11 @@ imports:
   version: 44cc805cf13205b55f69e14bcb69867d1ae92f98
 - name: github.com/ebuchman/fail-test
   version: c1eddaa09da2b4017351245b0d43234955276798
+- name: github.com/ethereum/go-ethereum
+  version: facc47cb5cec97b22c815a0a6118816a98f39876
+  subpackages:
+  - accounts
+  - common
 - name: github.com/fsnotify/fsnotify
   version: 30411dbcefb7a1da7e84f75530ad3abe4011b4f8
 - name: github.com/Graylog2/go-gelf
