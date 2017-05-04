@@ -4,10 +4,10 @@ pre-requisits
 - monax v0.16
 - install jq, glide (go get github.com/Masterminds/glide)
 
-FROM github.com/hyperledger/burrow RUN
-	`git remote add monax git@github.com:monax/burrow`
-	`git fetch monax`
-	`git checkout -b worker-client monax/worker-client`
+FROM github.com/hyperledger/burrow RUN     
+	`git remote add monax git@github.com:monax/burrow`     
+	`git fetch monax`     
+	`git checkout -b worker-client monax/worker-client`    
 
 (if you don't have hyperledger/burrow, run `go get github.com/hyperledger/burrow`, navigate to that folder, then run the above)
 
