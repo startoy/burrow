@@ -6,7 +6,7 @@ pre-requisits
 - install jq, glide (go get github.com/Masterminds/glide)
 
 1. `glide install`
-2. `make burrow_client`
+2. `make build_client`
 3. `cd ./client/batch/test`
 4. `monax clean -y` (wipes chains dir !!)
 5. `monax chains make batch`
