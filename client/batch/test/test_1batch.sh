@@ -24,7 +24,7 @@ COMMIT_SHA=$(echo `git rev-parse --short --verify HEAD`)
 
 export BURROW_CLIENT_ABI_PATH="$(pwd)/abi/Store"
 export BURROW_CLIENT_METHOD="saveItem"
-export BURROW_CLIENT_JSON_DATA_PATH="$(pwd)/names.json"
+export BURROW_CLIENT_JSON_DATA_PATH="$(pwd)/shortnames.json"
 
 # get the client executable
 client=../../../target/burrow-client-$COMMIT_SHA

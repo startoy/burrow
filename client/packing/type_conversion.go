@@ -15,10 +15,12 @@
 package packing
 
 import (
+	"encoding/hex"
 	"fmt"
 	"math"
 	"math/big"
 	"strconv"
+	"strings"
 
 	gethAbi "github.com/ethereum/go-ethereum/accounts/abi"
 )
@@ -31,14 +33,16 @@ func convertToCloserType(inputType *gethAbi.Type, argument interface{}) (interfa
 		return convertToInt(argument, inputType.Size)
 	case gethAbi.UintTy:
 		return convertToUint(argument, inputType.Size)
-		// case gethAbi.BoolTy:
+	case gethAbi.BoolTy:
+		return convertToBool(argument)
 	case gethAbi.StringTy:
 		return convertToString(argument)
 		// case gethAbi.SliceTy:
-		// case gethAbi.AddressTy:
-		// case gethAbi.FixedBytesTy:
-		// case gethAbi.BytesTy:
-		// 	return convertToBytes(argument)
+	case gethAbi.AddressTy:
+		return convertToAddress(argument)
+	case gethAbi.FixedBytesTy:
+		return convertToFixedBytes(argument, inputType.SliceSize)
+	// case gethAbi.BytesTy:
 		// case gethAbi.HashTy:
 		// case gethAbi.FixedpointTy:
 		// case gethAbi.FunctionTy:
@@ -291,6 +295,50 @@ func reduceToVarSizeUint(integer uint64, size int) (interface{}, error) {
 	}
 }
 
+
+func convertToBool(argument interface{})(interface{}, error){
+	switch t := argument.(type) {
+	case bool:
+		return argument, nil
+
+	case int, int8, int16, int32, int64, uint, uint8, uint16, uint32, uint64:
+		if t==0 {
+			return false, nil
+		} else if t==1 {
+			return true, nil
+		} else {
+			return nil, fmt.Errorf("Failed to convert (U)Int* to Bool, value not mappable")
+		}
+
+	case float32, float64:
+		if t==0 {
+			return false, nil
+		} else if t==1 {
+			return true, nil
+		} else {
+			return nil, fmt.Errorf("Failed to convert Float* type to Bool")
+		}
+		
+	case string:
+		if t=="0" {
+			return false, nil
+		} else if t=="1" {
+			return true, nil
+		} else if strings.ToLower(t) == "true" {
+			return true, nil
+		} else if strings.ToLower(t) == "false" {
+			return false, nil
+		} else {
+			return nil, fmt.Errorf("Failed to convert String type to Bool")
+		}
+		
+	case complex64, complex128:
+		return nil, fmt.Errorf("Failed to convert complex type to Bool")
+	default:
+		return nil, fmt.Errorf("Failed to convert unhandled type to string")
+	}
+}
+
 // convertToString is idempotent for string; for other types it fails
 // can be extended for other type
 func convertToString(argument interface{}) (interface{}, error) {
@@ -300,4 +348,81 @@ func convertToString(argument interface{}) (interface{}, error) {
 	default:
 		return nil, fmt.Errorf("Failed to convert unhandled type to string")
 	}
+}
+
+func convertToFixedBytes(argument interface{}, size int) (interface{}, error) {
+	switch t := argument.(type) {
+	case []byte:
+		if len(t) > size {
+			return nil, fmt.Errorf("Failed to convert bytes to Fixed length bytes %v: overflow", size)
+		}
+
+		padded := rightPadBytes(t, size)
+		return padded, nil
+	case string:
+
+		decoded, err := hex.DecodeString(t)
+		if err != nil {
+			return nil, err
+		}
+
+		if len(decoded) > size {
+			return nil, fmt.Errorf("Failed to convert string to Fixed length bytes %v: overflow", size)
+		}
+
+		// Right pad into proper sized array 
+		padded := rightPadBytes(decoded, size)
+
+		return padded, nil
+	default:
+		return nil, fmt.Errorf("Failed to convert unhandled type to bytes")
+	}
+}
+
+
+// This is not working... Apparently its not the right type
+func convertToAddress(argument interface{}) (interface{}, error) {
+	switch t := argument.(type) {
+	case []byte:
+		if len(t) != 20 {
+			return nil, fmt.Errorf("Failed to convert bytes to address: bad Length %v", len(t))
+		}
+
+		var padded [20]byte
+		copy(padded[:], t)
+
+		return padded, nil
+	case string:
+
+		decoded, err := hex.DecodeString(t)
+		if err != nil {
+			return nil, err
+		}
+
+		if len(decoded) != 20 {
+			return nil, fmt.Errorf("Failed to convert string to address: bad Length %v", len(decoded))
+		}
+
+		var padded [20]byte
+		copy(padded[:], decoded)
+
+		return padded, nil
+	default:
+		return nil, fmt.Errorf("Failed to convert unhandled type to address")
+	}
+}
+
+// Ben, Sorry for putting these here, I couldn't find an existing function in our codebase that did this
+// If one exists, It should be an easy change.
+
+func rightPadBytes(inBytes []byte, size int) []byte {
+	padded := make([]byte, size)
+    copy(padded[0:len(inBytes)], inBytes)
+    return padded
+}
+
+func leftPadBytes(inBytes []byte, size int) []byte {
+	padded := make([]byte, size)
+    copy(padded[size - len(inBytes):], inBytes)
+    return padded
 }
