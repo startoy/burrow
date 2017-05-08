@@ -1,0 +1,20 @@
+[
+  {
+    "id": 0,
+    "name": "Blanca Armstrong",
+    "junk": "deadbeef",
+    "blob": "0123456789abcdefAAAA0123456789abcdefAAAA"
+  },
+  {
+    "id": 1,
+    "name": "Clara White",
+    "junk": "FEEDFACE",
+    "blob": "0123456789abcdefAAAA0123456789abcdefAAAA"
+  },
+  {
+    "id": 2,
+    "name": "Lindsey George",
+    "junk": "DEADBeef",
+    "blob": "0123456789abcdefAAAA0123456789abcdefAAAA"
+  }
+]
