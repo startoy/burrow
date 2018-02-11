@@ -17,10 +17,9 @@ package execution
 import (
 	"bytes"
 	"fmt"
+	"reflect"
 	"sync"
 	"time"
-
-	"reflect"
 
 	acm "github.com/hyperledger/burrow/account"
 	"github.com/hyperledger/burrow/binary"

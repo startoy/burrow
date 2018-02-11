@@ -7,6 +7,7 @@ import (
 
 	bcm "github.com/hyperledger/burrow/blockchain"
 	"github.com/hyperledger/burrow/execution"
+
 	"github.com/hyperledger/burrow/logging"
 	"github.com/hyperledger/burrow/logging/structure"
 	logging_types "github.com/hyperledger/burrow/logging/types"
